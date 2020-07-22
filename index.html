@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Hey Lorenzo
+
+    <p class="show-on-en">show only when english</p>
+    <p class="show-on-es">show only when spanish</p>
+    <p class="show-on-fr">show only when french</p>
+    <p class="">show on all pages</p>
+    <p class="show-on-en show-on-es">show on all pages except french</p>
+
+    <button onclick="toggleLangEls('en')">change to en</button>
+    <button onclick="toggleLangEls('es')">change to es</button>
+    <button onclick="toggleLangEls('fr')">change to fr</button>
+    <button onclick="logCurrentLang()">
+      curr lang
+    </button>
+  </body>
+
+  <footer>
+    <script>
+      // language function that takes a lang param
+      var toggleLangEls = function (lang) {
+        // sets language
+        document.documentElement.setAttribute('lang', lang);
+        var currLang = document.documentElement.lang;
+
+        var enClasses = document.getElementsByClassName('show-on-en');
+        var esClasses = document.getElementsByClassName('show-on-es');
+        var frClasses = document.getElementsByClassName('show-on-fr');
+
+        console.log('enClasses.length', enClasses);
+        console.log('esClasses.length', esClasses);
+        console.log('frClasses.length', frClasses);
+
+        // if en -> show-on-en and hide on es and fr pages
+        if (currLang === 'en') {
+          for (var i = 0; i < enClasses.length; i++) {
+            enClasses[i].style.display = 'block';
+          }
+          for (var i = 0; i < esClasses.length; i++) {
+            esClasses[i].style.display = 'none';
+          }
+          for (var i = 0; i < frClasses.length; i++) {
+            frClasses[i].style.display = 'none';
+          }
+        } else if (currLang === 'es') {
+          // if es -> show-on-es and hide on en and fr pages
+          for (var i = 0; i < enClasses.length; i++) {
+            enClasses[i].style.display = 'none';
+          }
+          for (var i = 0; i < esClasses.length; i++) {
+            esClasses[i].style.display = 'block';
+          }
+          for (var i = 0; i < frClasses.length; i++) {
+            frClasses[i].style.display = 'none';
+          }
+        } else if (currLang === 'fr') {
+          // if es -> show-on-es and hide on en and fr pages
+          for (var i = 0; i < enClasses.length; i++) {
+            enClasses[i].style.display = 'none';
+          }
+          for (var i = 0; i < esClasses.length; i++) {
+            esClasses[i].style.display = 'none';
+          }
+          for (var i = 0; i < frClasses.length; i++) {
+            frClasses[i].style.display = 'block';
+          }
+        }
+      };
+
+      var logCurrentLang = function () {
+        console.log(document.documentElement.lang);
+      };
+
+      // if (document.documentElement.lang === 'en') {
+      //   // nothing for now
+      // } else if (document.documentElement.lang === 'es') {
+      //   var waitlistHrefs = document.getElementsByClassName('href-to-waitlist');
+      //   for (var i = 0; i < waitlistHrefs.length; i++) {
+      //     waitlistHrefs[i].href = 'https://beta.tribal.credit/es/join';
+      //   }
+      // }
+    </script>
+  </footer>
+</html>

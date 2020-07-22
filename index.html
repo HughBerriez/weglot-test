@@ -4,24 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      button {
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        border-color: transparent;
+        background-color: rgb(174, 226, 247);
+        margin-right: 0.5rem;
+      }
+      .btn-2 {
+        background-color: transparent;
+        border-color: rgb(174, 226, 247);
+      }
+      .text-div {
+        background-color: rgb(235, 235, 235);
+        max-width: 20rem;
+        padding: 0.5rem;
+        margin: 2rem 0 2rem 0;
+        border-radius: 0.4rem;
+      }
+    </style>
   </head>
   <body>
-    Yo
+    <h1>Yo</h1>
 
-    <p class="multi-lang show-on-en">show only when english</p>
-    <p class="multi-lang show-on-es">show only when spanish</p>
-    <p class="multi-lang show-on-fr">show only when french</p>
-    <p class="">show on all pages</p>
-    <p class="multi-lang show-on-en show-on-es">
-      show on all pages except french
-    </p>
+    <div>
+      <button onclick="toggleLangEls('en')">
+        change to en
+      </button>
+      <button onclick="toggleLangEls('es')">
+        change to es
+      </button>
+      <button onclick="toggleLangEls('fr')">
+        change to fr
+      </button>
+      <button onclick="logCurrentLang()" class="btn-2">
+        curr lang
+      </button>
+    </div>
 
-    <button onclick="toggleLangEls('en')">change to en</button>
-    <button onclick="toggleLangEls('es')">change to es</button>
-    <button onclick="toggleLangEls('fr')">change to fr</button>
-    <button onclick="logCurrentLang()">
-      curr lang
-    </button>
+    <div class="text-div">
+      <p class="multi-lang show-on-en">show only when english</p>
+      <p class="multi-lang show-on-es">show only when spanish</p>
+      <p class="multi-lang show-on-fr">show only when french</p>
+      <p class="">show on all pages</p>
+      <p class="multi-lang show-on-en show-on-es">
+        show on all pages except french
+      </p>
+    </div>
   </body>
 
   <footer>

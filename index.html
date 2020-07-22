@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Multilang test</title>
+    <link rel="icon" sizes="180x180" type="image/png" href="favicon.ico" />
     <style>
       body {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -42,6 +43,7 @@
   </head>
   <body>
     <h1>Yo</h1>
+    <h3 id="curr-lang-txt">Current lang:</h3>
 
     <div>
       <button onclick="toggleLangEls('en')">
@@ -53,9 +55,9 @@
       <button onclick="toggleLangEls('fr')">
         change to fr
       </button>
-      <button onclick="logCurrentLang()" class="btn-2">
+      <!-- <button onclick="logCurrentLang()" class="btn-2">
         curr lang
-      </button>
+      </button> -->
     </div>
 
     <div class="text-div">
@@ -66,7 +68,12 @@
       <p class="multi-lang show-on-en show-on-es">
         show on all pages except french
       </p>
+      <!-- <p>
+      </p> -->
     </div>
+    <a href="#" id="href-to-waitlist">
+      Dynamic link to either Es, En, or Fr
+    </a>
   </body>
 
   <footer>
@@ -74,6 +81,8 @@
       // language function that takes a lang param
       var showHideMultiLangUI = function () {
         var currLang = document.documentElement.lang;
+        document.getElementById('curr-lang-txt').textContent =
+          'Current language: ' + currLang;
 
         // Searches for all multi-lang attributes on the view and sets them to display:none
         // so we can then pick and choose what to show based on lang classes next
@@ -101,6 +110,26 @@
             frClasses[i].style.display = 'block';
           }
         }
+
+        // Selects href-to-waitlist and injects dynamic link
+        var routeRef = document.getElementById('href-to-waitlist');
+        console.log('routeRef', routeRef);
+        if (currLang === 'en') {
+          routeRef.href = 'https://beta.tribal.credit/en/join';
+        } else if (currLang === 'es') {
+          routeRef.href = 'https://beta.tribal.credit/es/join';
+        } else if (currLang === 'fr') {
+          routeRef.href = 'https://en.wikipedia.org/wiki/France';
+        }
+
+        // if (document.documentElement.lang === 'en') {
+        //   // nothing for now
+        // } else if (document.documentElement.lang === 'es') {
+        //   var waitlistHrefs = document.getElementsByClassName('href-to-waitlist');
+        //   for (var i = 0; i < waitlistHrefs.length; i++) {
+        //     waitlistHrefs[i].href = 'https://beta.tribal.credit/es/join';
+        //   }
+        // }
       };
 
       var toggleLangEls = function (lang) {
@@ -114,15 +143,6 @@
       };
 
       showHideMultiLangUI();
-
-      // if (document.documentElement.lang === 'en') {
-      //   // nothing for now
-      // } else if (document.documentElement.lang === 'es') {
-      //   var waitlistHrefs = document.getElementsByClassName('href-to-waitlist');
-      //   for (var i = 0; i < waitlistHrefs.length; i++) {
-      //     waitlistHrefs[i].href = 'https://beta.tribal.credit/es/join';
-      //   }
-      // }
     </script>
   </footer>
 </html>

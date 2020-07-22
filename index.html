@@ -37,22 +37,21 @@
           allMultiCurrClasses[i].style.display = 'none';
         }
 
+        // sets class nodes to check
         var enClasses = document.getElementsByClassName('show-on-en');
         var esClasses = document.getElementsByClassName('show-on-es');
         var frClasses = document.getElementsByClassName('show-on-fr');
 
-        // if en -> show-on-en and hide on es and fr pages
+        // based on lang, shows the respective classes related
         if (currLang === 'en') {
           for (var i = 0; i < enClasses.length; i++) {
             enClasses[i].style.display = 'block';
           }
         } else if (currLang === 'es') {
-          // if es -> show-on-es and hide on en and fr pages
           for (var i = 0; i < esClasses.length; i++) {
             esClasses[i].style.display = 'block';
           }
         } else if (currLang === 'fr') {
-          // if es -> show-on-es and hide on en and fr pages
           for (var i = 0; i < frClasses.length; i++) {
             frClasses[i].style.display = 'block';
           }

@@ -8,11 +8,13 @@
   <body>
     Hey Lorenzo
 
-    <p class="show-on-en">show only when english</p>
-    <p class="show-on-es">show only when spanish</p>
-    <p class="show-on-fr">show only when french</p>
+    <p class="multi-lang show-on-en">show only when english</p>
+    <p class="multi-lang show-on-es">show only when spanish</p>
+    <p class="multi-lang show-on-fr">show only when french</p>
     <p class="">show on all pages</p>
-    <p class="show-on-en show-on-es">show on all pages except french</p>
+    <p class="multi-lang show-on-en show-on-es">
+      show on all pages except french
+    </p>
 
     <button onclick="toggleLangEls('en')">change to en</button>
     <button onclick="toggleLangEls('es')">change to es</button>
@@ -30,44 +32,29 @@
         document.documentElement.setAttribute('lang', lang);
         var currLang = document.documentElement.lang;
 
+        // Searches for all multi-lang attributes on the view and sets them to display:none
+        // so we can then pick and choose what to show based on lang classes next
+        var allMultiCurrClasses = document.getElementsByClassName('multi-lang');
+        for (var i = 0; i < allMultiCurrClasses.length; i++) {
+          allMultiCurrClasses[i].style.display = 'none';
+        }
+
         var enClasses = document.getElementsByClassName('show-on-en');
         var esClasses = document.getElementsByClassName('show-on-es');
         var frClasses = document.getElementsByClassName('show-on-fr');
-
-        console.log('enClasses.length', enClasses);
-        console.log('esClasses.length', esClasses);
-        console.log('frClasses.length', frClasses);
 
         // if en -> show-on-en and hide on es and fr pages
         if (currLang === 'en') {
           for (var i = 0; i < enClasses.length; i++) {
             enClasses[i].style.display = 'block';
           }
-          for (var i = 0; i < esClasses.length; i++) {
-            esClasses[i].style.display = 'none';
-          }
-          for (var i = 0; i < frClasses.length; i++) {
-            frClasses[i].style.display = 'none';
-          }
         } else if (currLang === 'es') {
           // if es -> show-on-es and hide on en and fr pages
-          for (var i = 0; i < enClasses.length; i++) {
-            enClasses[i].style.display = 'none';
-          }
           for (var i = 0; i < esClasses.length; i++) {
             esClasses[i].style.display = 'block';
           }
-          for (var i = 0; i < frClasses.length; i++) {
-            frClasses[i].style.display = 'none';
-          }
         } else if (currLang === 'fr') {
           // if es -> show-on-es and hide on en and fr pages
-          for (var i = 0; i < enClasses.length; i++) {
-            enClasses[i].style.display = 'none';
-          }
-          for (var i = 0; i < esClasses.length; i++) {
-            esClasses[i].style.display = 'none';
-          }
           for (var i = 0; i < frClasses.length; i++) {
             frClasses[i].style.display = 'block';
           }
